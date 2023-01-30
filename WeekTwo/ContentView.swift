@@ -48,15 +48,14 @@ struct ContentView: View {
                         messageString = "You Are Awesome!"
                     }
                     .buttonStyle(.borderedProminent)
-                        
+                    
                     Spacer()
-                        
+                    
                     Button("Great") {
                         messageString = "You Are Great!"
                     }
                     .buttonStyle(.borderedProminent)
                 }
-    //              .border(.purple, width: 5)
                     .padding()
             }
         }
