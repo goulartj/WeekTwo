@@ -8,35 +8,28 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var messageString = "When the Genius Bar needs help, they call you!"
+    @State private var messageString = "Namaste"
     
     var body: some View {
      
         GeometryReader {geometry in
             VStack {
-                
-                Group {
-                    Text("I am a Text View!")
-                    Text("I am a Text View!")
-                    Text("I am a Text View!")
-                    Text("I am a Text View!")
-                    Text("I am a Text View!")
-                    Text("I am a Text View!")
-                    Text("I am a Text View!")
-                    Text("I am a Text View!")
-                }
-                .font(.title)
-                .fontWeight(.heavy)
-                
-                Text("You Have Skills!")
-                    .font(.largeTitle)
-                    .fontWeight(.black)
-                    .foregroundColor(Color("BC-Gold"))
-                    .padding()
-                    .background(Color("BC-Maroon"))
-                    .cornerRadius(15)
                     
                 Spacer()
+                
+                Image(systemName: "speaker.wave.3", variableValue: 0.0)
+                    .resizable()
+                    .scaledToFit()
+                    .symbolRenderingMode(.multicolor)
+                    .padding()
+                    .background(Color(hue: 0.524, saturation: 0.315, brightness: 0.954))
+                    .cornerRadius(30)
+                    .shadow(color: .gray, radius: 30, x: 20, y: 20)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 30)
+                            .stroke(.red, lineWidth: 1)
+                    )
+                    .padding()
                     
                 Text(messageString)
                     .font(.largeTitle)
@@ -46,19 +39,9 @@ struct ContentView: View {
                     .foregroundColor(Color.red)
                     .frame(height: 150)
                     .frame(maxWidth: .infinity)
-    //              .border(.orange, width: 1)
                     .padding()
                     
                 Spacer()
-                
-                Divider()
-                    .background(.black)
-                    .padding()
-                    .frame(width: 150.0)
-                
-                Rectangle()
-                    .fill(.indigo)
-                    .frame(width: geometry.size.width * (2/3), height: 1)
                     
                 HStack {
                     Button("Awesome") {
