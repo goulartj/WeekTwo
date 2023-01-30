@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var messageString = "Namaste"
+    @State private var messageString = " "
     
     var body: some View {
      
@@ -16,20 +16,6 @@ struct ContentView: View {
             VStack {
                     
                 Spacer()
-                
-                Image(systemName: "speaker.wave.3", variableValue: 0.0)
-                    .resizable()
-                    .scaledToFit()
-                    .symbolRenderingMode(.multicolor)
-                    .padding()
-                    .background(Color(hue: 0.524, saturation: 0.315, brightness: 0.954))
-                    .cornerRadius(30)
-                    .shadow(color: .gray, radius: 30, x: 20, y: 20)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 30)
-                            .stroke(.red, lineWidth: 1)
-                    )
-                    .padding()
                     
                 Text(messageString)
                     .font(.largeTitle)
@@ -44,19 +30,19 @@ struct ContentView: View {
                 Spacer()
                     
                 HStack {
-                    Button("Awesome") {
-                        messageString = "You Are Awesome!"
-                    }
-                    .buttonStyle(.borderedProminent)
-                    
-                    Spacer()
-                    
-                    Button("Great") {
-                        messageString = "You Are Great!"
+                    Button("Show Message") {
+                        let message1 = "You Are Awesome!"
+                        let message2 = "You Are Great!"
+                        if messageString == message1 {
+                            messageString = message2
+                        } else {
+                            messageString = message1
+                        }
+                            
                     }
                     .buttonStyle(.borderedProminent)
                 }
-                    .padding()
+                .padding()
             }
         }
     }
