@@ -36,7 +36,7 @@ struct ContentView: View {
                     .foregroundColor(Color.red)
                     .frame(height: 150)
                     .frame(maxWidth: .infinity)
-                //                .border(.orange, width: 1)
+//                  .border(.orange, width: 1)
                     .padding()
                 
                 Spacer()
@@ -57,7 +57,7 @@ struct ContentView: View {
                     }
                     .buttonStyle(.borderedProminent)
                 }
-    //            .border(.purple, width: 5)
+                //          .border(.purple, width: 5)
                 .padding()
             }
         }
