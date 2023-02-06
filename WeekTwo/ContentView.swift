@@ -6,12 +6,18 @@
 //
 
 import SwiftUI
+import AVFAudio
 
 struct ContentView: View {
     @State private var messageString = ""
     @State private var imageName = ""
     @State private var imageNumber = 0
     @State private var messageNumber = 0
+    @State private var lastMessageNumber = -1
+    @State private var lastImageNumber = -1
+    @State private var lastSoundNumber = -1
+    @State private var audioPlayer: AVAudioPlayer!
+    
     
     var body: some View {
      
@@ -45,21 +51,39 @@ struct ContentView: View {
                                         "You Are Fantastic!",
                                         "Fabulous? That's You!"]
                         
+                        lastMessageNumber = nonRepeatingRandom(lastNumber: lastMessageNumber, upperBound: messages.count-1)
                         messageString = messages[messageNumber]
-                        messageNumber += 1
-                        if messageNumber == messages.count {
-                            messageNumber = 0
-                        }
                         
-                        imageName = "image\(imageNumber)"
-                        imageNumber += 1
-                        if imageNumber > 9 {
-                            imageNumber = 0
-                        }
+                        lastImageNumber = nonRepeatingRandom(lastNumber: lastImageNumber, upperBound: 9)
+                        imageName = "image\(lastImageNumber)"
+                        
+                        lastSoundNumber = nonRepeatingRandom(lastNumber: lastSoundNumber, upperBound: 5)
+                        playSound(soundName: "sound\(lastSoundNumber)")
                     }
                     .buttonStyle(.borderedProminent)
                 }
                 .padding()
+        }
+    }
+    
+    func nonRepeatingRandom(lastNumber: Int, upperBound:Int) -> Int {
+        var newNumber: Int
+        repeat {
+            newNumber = Int.random(in: 0...upperBound)
+        } while newNumber == lastNumber
+        return newNumber
+    }
+    
+    func playSound(soundName: String) {
+        guard let soundFile = NSDataAsset(name: soundName) else {
+            print("😡 Could not read file names \(soundName)")
+            return
+        }
+        do {
+            audioPlayer = try AVAudioPlayer(data: soundFile.data)
+            audioPlayer.play()
+        } catch {
+            print("😡 Error: \(error.localizedDescription) creating audio.Player.")
         }
     }
 }
